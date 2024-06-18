@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>REGISTRATION FORM</title>
+</head>
+<style>
+    body{
+        background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url(img/reg.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 600px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    h2{
+        font-size: 35px;
+        text-align: center;
+        color: white;
+    }
+    .wrapper{
+        border: 2px solid skyblue;
+        width: 30%;
+        padding: 40px;
+        backdrop-filter: blur(9px);
+        
+    }
+    .input input{
+        border: 4px solid skyblue;
+        border-radius: 20px;
+        width: 200px;
+    }
+    label{
+        font-size: 25px;
+        font-weight: bolder;
+    }
+    button{
+        border-radius: 20px;
+        border: none;
+        border: 2px solid skyblue;
+        padding: 5px;
+        width: 150px;
+        font-weight: bold;
+        margin-left: 130px;
+        cursor: pointer;
+        font-size: 18px;
+    }
+    button:hover{
+        background-color: skyblue;
+    }
+
+    .loader{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+.spinner {
+  border: 16px solid #f3f3f3; 
+  border-top: 16px solid #3498db;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 1s linear  infinite;
+
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+</style>
+ <!--loading-->
+ <div class="loader">
+    <span class="spinner"></span>
+</div>
+<div class="wrapper">
+    <form id="register">
+        <h2>REGISTER</h2>
+        <div class="input">
+            <label for="username">Username</label>
+            <input type="text" id="username" required>
+        </div><br>
+        <div class="input">
+            <label for="email">Email</label>
+            <input type="email" id="email"  onkeyup="msValidateEmail(this);" required>
+        </div><br>
+        <div class="input">
+            <label for="password">Password</label>
+            <input type="password" id="password" required>
+        </div><br>
+        <div class="input">
+            <label for="mobile">Mobile no</label>
+            <input type="text" id="mobile" required>
+        </div><br>
+        <div class="input">
+            <label for="qualification">Qualification</label>
+            <input list="browsers"name="browser"id="qualification"required>
+            <datalist id="browsers">
+                <option value="EEE"></option>
+                <option value="CSE"></option>
+                <option value="MECH"></option>
+                <option value="CIVIL"></option>
+                <option value="ECE"></option>
+            </datalist>
+        </div><br>
+        <div class="input">
+            <label for="yearOfPassing">Year of passing</label>
+            <input list="years"name="year"id="yearOfPassing"required>
+            <datalist id="years">
+                <option value="2020"></option>
+                <option value="2021"></option>
+                <option value="2022"></option>
+                <option value="2023"></option>
+                <option value="2024"></option>
+            </datalist>
+        </div><br>
+        <button type="submit">SUBMIT</button>
+    </form>
+</div>
+<script>
+       /*loading*/
+window.addEventListener("load", function (){
+    this.setTimeout(function(){
+        var pageload = document.querySelector(".loader");
+        pageload.style.display="none";
+    }, 1000);
+    });
+    /*mail*/
+    function msValidateEmail(email)
+{
+    if (/^[^ ]+@[^ ]+\.[a-z]{2,3}$/.test(email.value))
+    {
+        email.innerHTML="Valid email";
+        email.style.color="green";
+    }
+    else
+    {
+        email.innerHTML="Valid email";
+        email.style.color="red";
+    }
+}
+/*reg*/
+    document.getElementById("register").addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        const username = document.getElementById('username').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const mobile = document.getElementById('mobile').value;
+        const qualification = document.getElementById('qualification').value;
+        const yearOfPassing = document.getElementById('yearOfPassing').value;
+
+    
+        localStorage.setItem('username', username);
+        localStorage.setItem('email', email);
+        localStorage.setItem('password', password);
+        localStorage.setItem('mobile', mobile);
+        localStorage.setItem('qualification', qualification);
+        localStorage.setItem('yearOfPassing', yearOfPassing);
+
+    
+        alert('Registration successful!');
+    
+        window.location.href = 'login.html';
+    });
+</script>
+
+</body>
+</html>

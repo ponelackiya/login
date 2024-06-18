@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOME PAGE</title>
+</head>
+<style>
+    .navbar{
+        background-color: lightgrey;
+        display: flex;
+        padding: 15px;
+        justify-content: space-around;
+    }
+    .navbar h1{
+        margin: 0;
+    }
+    .navbar button{
+        cursor: pointer;
+        font-size: 20px;
+        border-radius: 50px;
+        padding: 6px;
+        width: 150px;
+        border: none;
+    }
+    .navbar button:hover{
+        background-color: lightpink;
+    }
+    .navbar p{
+        font-size: 20px;
+    }
+    .loader{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+.spinner {
+  border: 16px solid #f3f3f3; 
+  border-top: 16px solid #3498db;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 1s linear  infinite;
+
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+</style>
+<body>
+    <div class="loader">
+        <span class="spinner"></span>
+    </div>
+    <div class="navbar">
+        <h1>Welcome to Our Site</h1>
+        <p id="usernameDisplay"></p>
+        <button id="logoutBtn">Logout</button>
+    </div>
+    <script>
+        /*loading*/
+        window.addEventListener("load", function (){
+    this.setTimeout(function(){
+        var pageload = document.querySelector(".loader");
+        pageload.style.display="none";
+    }, 1000);
+    });
+    /*process*/
+       var username=localStorage.getItem('username');
+       document.getElementById('usernameDisplay').innerText=username=`${username}`;
+
+       document.getElementById('logoutBtn').addEventListener('click', function(){
+        localStorage.removeItem('username');
+        localStorage.removeItem('email');
+        localStorage.removeItem('password');
+        localStorage.removeItem('mobile');
+        localStorage.removeItem('qualification');
+        localStorage.removeItem('yearOfPassing');
+
+        window.location.href='index.html';
+       })
+    </script>
+</body>
+</html>
